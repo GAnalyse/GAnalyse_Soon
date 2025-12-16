@@ -2,24 +2,29 @@ name: Deploy to VPS
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "npm"
 
-      - run: npm ci
-      - run: npm run build
+      - name: Install deps
+        run: npm ci
 
-      - name: Setup SSH
+      - name: Build
+        run: npm run build
+
+      - name: Setup known_hosts
         run: |
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
@@ -31,6 +36,14 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
+      # Jeśli SSH jest na innym porcie niż 22, ustaw SSH_PORT w Secrets
       - name: Deploy via rsync
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         run: |
-          rsync -avz --delete dist/ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_PATH }}/"
+          if [ -z "$SSH_PORT" ]; then SSH_PORT="22"; fi
+          rsync -avz --delete -e "ssh -p $SSH_PORT" dist/ "${SSH_USER}@${SSH_HOST}:${DEPLOY_PATH}/"
+
