@@ -1,0 +1,22 @@
+{
+  "name": "ganalyse_soon",
+  "version": "1.0.0",
+  "description": "GAnalyse - Multi-AI Market Analysis Platform",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": ["ai", "trading", "market-analysis"],
+  "author": "GAnalyse",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.2",
+    "vite": "^7.3.0"
+  }
+}
