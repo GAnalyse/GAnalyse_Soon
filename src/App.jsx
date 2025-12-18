@@ -75,6 +75,7 @@ function Navigation() {
           <a href="#features">Features</a>
           <a href="#signals">Signals</a>
           <a href="#expert-chat">Expert Chat</a>
+          <a href="#chart-analysis">Chart Analysis</a>
           <button className="nav-cta glass">Coming Soon</button>
         </div>
       </div>
@@ -121,15 +122,12 @@ function HeroSection() {
         </p>
         
         <div className="hero-cta-group">
-          <button className="cta-primary">
+          <a href="#waitlist" className="cta-primary">
             <span>Join Waitlist</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
-          </button>
-          <button className="cta-secondary glass">
-            <span>Learn More</span>
-          </button>
+          </a>
         </div>
 
         <div className="hero-stats">
@@ -150,12 +148,6 @@ function HeroSection() {
         </div>
       </div>
 
-      <div className="scroll-indicator">
-        <div className="mouse">
-          <div className="wheel"></div>
-        </div>
-        <span>Scroll to Explore</span>
-      </div>
     </section>
   )
 }
@@ -236,22 +228,19 @@ function FeaturesSection() {
     {
       key: 'chat',
       title: 'Expert Chat',
-      description: 'Chatuj bezpośrednio z modelami AI (GPT-5, Claude, Gemini, Grok). Przesyłaj wykresy i zadawaj szczegółowe pytania eksperckie.',
-      cta: 'Rozpocznij expert chat',
+      description: 'Chat directly with AI models (GPT-5, Claude, Gemini, Grok). Upload charts and ask detailed expert questions.',
       icon: <ChatBubbleIcon />
     },
     {
       key: 'signals',
       title: 'Instant Signals',
-      description: 'Natychmiastowe sygnały tradingowe. Otrzymuj konkretne poziomy Entry, Stop-Loss i Take-Profit dla twoich transakcji.',
-      cta: 'Zarządzaj ryzykiem',
+      description: 'Real-time trading signals. Get precise Entry, Stop-Loss, and Take-Profit levels for your trades.',
       icon: <LightningIcon />
     },
     {
       key: 'analysis',
-      title: 'Analiza Wykresu',
-      description: 'Przeanalizuj wykres finansowy za pomocą AI. Otrzymaj szczegółową analizę techniczną, wskaźniki i prognozy.',
-      cta: 'Rozpocznij analizę',
+      title: 'Chart Analysis',
+      description: 'Analyze financial charts with AI. Receive detailed technical analysis, indicators, and forecasts.',
       icon: <BarChartIcon />
     }
   ]
@@ -266,10 +255,6 @@ function FeaturesSection() {
                 <div className="dashboard-card__icon">{panel.icon}</div>
                 <h2 className="dashboard-card__title">{panel.title}</h2>
                 <p className="dashboard-card__description">{panel.description}</p>
-                <div className="dashboard-card__cta">
-                  <span>{panel.cta}</span>
-                  <span className="dashboard-card__cta-arrow">→</span>
-                </div>
               </div>
             </AnimatedSection>
           ))}
@@ -336,7 +321,7 @@ function SignalsSection() {
 // Expert Chat Section
 function ExpertChatSection() {
   const aiModels = [
-    { name: 'GPT-4', logo: '/openai-logo.png', specialty: 'General Analysis & Strategy', color: '#888888' },
+    { name: 'GPT', logo: '/openai-logo.png', specialty: 'General Analysis & Strategy', color: '#888888' },
     { name: 'Claude', logo: '/claude-logo.png', specialty: 'Deep Research & Reasoning', color: '#888888' },
     { name: 'Gemini', logo: '/gemini-logo.png', specialty: 'Data Processing & Insights', color: '#888888' },
     { name: 'Grok', logo: '/grok-logo.png', specialty: 'Real-time Market Analysis', color: '#888888' },
@@ -385,6 +370,117 @@ function ExpertChatSection() {
   )
 }
 
+// Chart Analysis Section
+function ChartAnalysisSection() {
+  const analysisFeatures = [
+    {
+      title: 'Multi-AI Consensus',
+      description: 'Get analysis from GPT, Claude, Gemini, and Grok simultaneously. Compare perspectives and find consensus signals.',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+          <path d="M2 12h20"/>
+        </svg>
+      )
+    },
+    {
+      title: 'Technical Indicators',
+      description: 'AI-powered recognition of RSI, MACD, Bollinger Bands, Moving Averages, and 50+ other indicators.',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 3v18h18"/>
+          <path d="M18 17V9"/>
+          <path d="M13 17V5"/>
+          <path d="M8 17v-3"/>
+        </svg>
+      )
+    },
+    {
+      title: 'Pattern Recognition',
+      description: 'Automatic detection of chart patterns: Head & Shoulders, Double Tops, Triangles, Flags, and more.',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M2 12h6l3-9 6 18 3-9h4"/>
+        </svg>
+      )
+    },
+    {
+      title: 'Support & Resistance',
+      description: 'Identify key price levels with AI precision. Get actionable zones for entries and exits.',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 12H3"/>
+          <path d="M21 6H3"/>
+          <path d="M21 18H3"/>
+        </svg>
+      )
+    }
+  ]
+
+  return (
+    <section id="chart-analysis" className="chart-analysis-section">
+      <div className="section-container">
+        <AnimatedSection>
+          <div className="section-header">
+            <span className="section-tag glass">Chart Analysis</span>
+            <h2 className="section-title">
+              Multi-AI <span className="gradient-text">Chart Analysis</span>
+            </h2>
+            <p className="section-subtitle">
+              Upload any financial chart and receive comprehensive analysis from multiple 
+              AI models working together. Get the full picture, not just one perspective.
+            </p>
+          </div>
+        </AnimatedSection>
+
+        <div className="analysis-content-centered">
+          <AnimatedSection animation="fadeUp" delay={0.1}>
+            <div className="multi-ai-highlight glass-strong">
+              <div className="multi-ai-header">
+                <h3>4 AI Models. One Analysis.</h3>
+                <p>Each model brings unique strengths to your chart analysis</p>
+              </div>
+              <div className="multi-ai-models">
+                <div className="mini-model">
+                  <img src="/openai-logo.png" alt="GPT" />
+                  <span>Pattern Analysis</span>
+                </div>
+                <div className="mini-model">
+                  <img src="/claude-logo.png" alt="Claude" />
+                  <span>Risk Assessment</span>
+                </div>
+                <div className="mini-model">
+                  <img src="/gemini-logo.png" alt="Gemini" />
+                  <span>Data Synthesis</span>
+                </div>
+                <div className="mini-model">
+                  <img src="/grok-logo.png" alt="Grok" />
+                  <span>Market Context</span>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          <div className="analysis-features-grid">
+            {analysisFeatures.map((feature, index) => (
+              <AnimatedSection key={index} animation="fadeUp" delay={0.15 + index * 0.1}>
+                <div className="analysis-feature-card">
+                  <div className="analysis-feature-icon">{feature.icon}</div>
+                  <div className="analysis-feature-content">
+                    <h4>{feature.title}</h4>
+                    <p>{feature.description}</p>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // CTA Section
 function CTASection() {
   const [email, setEmail] = useState('')
@@ -410,7 +506,7 @@ function CTASection() {
   }
 
   return (
-    <section className="cta-section">
+    <section id="waitlist" className="cta-section">
       <div className="cta-background">
         <div className="cta-particles"></div>
       </div>
@@ -480,6 +576,7 @@ function Footer() {
           <a href="#features">Features</a>
           <a href="#signals">Signals</a>
           <a href="#expert-chat">Expert Chat</a>
+          <a href="#chart-analysis">Chart Analysis</a>
         </div>
         <div className="footer-social">
           <span>You can find us on</span>
@@ -508,6 +605,7 @@ function App() {
       <FeaturesSection />
       <SignalsSection />
       <ExpertChatSection />
+      <ChartAnalysisSection />
       <CTASection />
       <Footer />
     </div>
