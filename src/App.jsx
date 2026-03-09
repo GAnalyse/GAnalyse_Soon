@@ -461,7 +461,7 @@ function PortfolioAnalysisSection() {
 }
 
 // CTA Section
-const GOOGLE_SHEET_URL = 'WKLEJ_TUTAJ_SWOJ_URL'
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxR5QSw1pLckfhkKXWnwbGTHZbBz026ei-qyXqNZUXXnEEe3qd4KJpqkYW5UmP3T5StPQ/exec'
 
 function CTASection() {
   const [email, setEmail] = useState('')
@@ -486,12 +486,8 @@ function CTASection() {
     setLoading(true)
 
     try {
-      await fetch(GOOGLE_SHEET_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
-      })
+      const url = `${GOOGLE_SHEET_URL}?email=${encodeURIComponent(email)}`
+      await fetch(url, { mode: 'no-cors' })
       setSubmitted(true)
     } catch {
       setError('Something went wrong. Please try again.')
