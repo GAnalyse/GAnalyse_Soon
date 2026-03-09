@@ -75,7 +75,7 @@ function Navigation() {
           <a href="#features">Features</a>
           <a href="#signals">Signals</a>
           <a href="#expert-chat">Expert Chat</a>
-          <a href="#chart-analysis">Chart Analysis</a>
+          <a href="#portfolio-analysis">Portfolio Analysis</a>
           <button className="nav-cta glass">Coming Soon</button>
         </div>
       </div>
@@ -239,8 +239,8 @@ function FeaturesSection() {
     },
     {
       key: 'analysis',
-      title: 'Chart Analysis',
-      description: 'Analyze financial charts with AI. Receive detailed technical analysis, indicators, and forecasts.',
+      title: 'Portfolio Analysis',
+      description: 'Analyze your portfolio with AI. Get detailed insights, risk assessment, and optimization suggestions.',
       icon: <BarChartIcon />
     }
   ]
@@ -370,12 +370,12 @@ function ExpertChatSection() {
   )
 }
 
-// Chart Analysis Section
-function ChartAnalysisSection() {
+// Portfolio Analysis Section
+function PortfolioAnalysisSection() {
   const analysisFeatures = [
     {
-      title: 'Multi-AI Consensus',
-      description: 'Get analysis from GPT, Claude, Gemini, and Grok simultaneously. Compare perspectives and find consensus signals.',
+      title: 'Portfolio Overview',
+      description: 'Get a complete breakdown of your portfolio allocation, performance metrics, and diversification score.',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="10"/>
@@ -385,8 +385,8 @@ function ChartAnalysisSection() {
       )
     },
     {
-      title: 'Technical Indicators',
-      description: 'AI-powered recognition of RSI, MACD, Bollinger Bands, Moving Averages, and 50+ other indicators.',
+      title: 'Risk Assessment',
+      description: 'AI-powered analysis of portfolio risk, volatility exposure, and correlation between your holdings.',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M3 3v18h18"/>
@@ -397,8 +397,8 @@ function ChartAnalysisSection() {
       )
     },
     {
-      title: 'Pattern Recognition',
-      description: 'Automatic detection of chart patterns: Head & Shoulders, Double Tops, Triangles, Flags, and more.',
+      title: 'Optimization Tips',
+      description: 'Receive AI-driven suggestions to rebalance, hedge, and optimize your portfolio for better returns.',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M2 12h6l3-9 6 18 3-9h4"/>
@@ -406,8 +406,8 @@ function ChartAnalysisSection() {
       )
     },
     {
-      title: 'Support & Resistance',
-      description: 'Identify key price levels with AI precision. Get actionable zones for entries and exits.',
+      title: 'Performance Tracking',
+      description: 'Monitor P&L, ROI, and benchmark comparisons across all your positions in real time.',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M21 12H3"/>
@@ -419,54 +419,33 @@ function ChartAnalysisSection() {
   ]
 
   return (
-    <section id="chart-analysis" className="chart-analysis-section">
+    <section id="portfolio-analysis" className="portfolio-analysis-section">
       <div className="section-container">
         <AnimatedSection>
           <div className="section-header">
-            <span className="section-tag glass">Chart Analysis</span>
+            <span className="section-tag glass portfolio-tag">Portfolio Analysis</span>
             <h2 className="section-title">
-              Multi-AI <span className="gradient-text">Chart Analysis</span>
+              AI-Powered <span className="gradient-text-yellow">Portfolio Analysis</span>
             </h2>
             <p className="section-subtitle">
-              Upload any financial chart and receive comprehensive analysis from multiple 
-              AI models working together. Get the full picture, not just one perspective.
+              Connect your portfolio and let multiple AI models analyze your holdings, 
+              risk exposure, and performance. Make smarter investment decisions.
             </p>
           </div>
         </AnimatedSection>
 
-        <div className="analysis-content-centered">
+        <div className="portfolio-content-centered">
           <AnimatedSection animation="fadeUp" delay={0.1}>
-            <div className="multi-ai-highlight glass-strong">
-              <div className="multi-ai-header">
-                <h3>4 AI Models. One Analysis.</h3>
-                <p>Each model brings unique strengths to your chart analysis</p>
-              </div>
-              <div className="multi-ai-models">
-                <div className="mini-model">
-                  <img src="/openai-logo.png" alt="GPT" />
-                  <span>Pattern Analysis</span>
-                </div>
-                <div className="mini-model">
-                  <img src="/claude-logo.png" alt="Claude" />
-                  <span>Risk Assessment</span>
-                </div>
-                <div className="mini-model">
-                  <img src="/gemini-logo.png" alt="Gemini" />
-                  <span>Data Synthesis</span>
-                </div>
-                <div className="mini-model">
-                  <img src="/grok-logo.png" alt="Grok" />
-                  <span>Market Context</span>
-                </div>
-              </div>
+            <div className="screenshot-container glass-strong portfolio-screenshot">
+              <img src="/portfolio_chat.png" alt="Portfolio Analysis Preview" className="screenshot-image" />
             </div>
           </AnimatedSection>
 
-          <div className="analysis-features-grid">
+          <div className="analysis-features-grid portfolio-features-grid">
             {analysisFeatures.map((feature, index) => (
               <AnimatedSection key={index} animation="fadeUp" delay={0.15 + index * 0.1}>
-                <div className="analysis-feature-card">
-                  <div className="analysis-feature-icon">{feature.icon}</div>
+                <div className="analysis-feature-card portfolio-feature-card">
+                  <div className="analysis-feature-icon portfolio-feature-icon">{feature.icon}</div>
                   <div className="analysis-feature-content">
                     <h4>{feature.title}</h4>
                     <p>{feature.description}</p>
@@ -482,15 +461,17 @@ function ChartAnalysisSection() {
 }
 
 // CTA Section
+const GOOGLE_SHEET_URL = 'WKLEJ_TUTAJ_SWOJ_URL'
+
 function CTASection() {
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     
-    // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!email) {
       setError('Please enter your email address')
@@ -500,9 +481,23 @@ function CTASection() {
       setError('Please enter a valid email address')
       return
     }
-    
+
     setError('')
-    setSubmitted(true)
+    setLoading(true)
+
+    try {
+      await fetch(GOOGLE_SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      })
+      setSubmitted(true)
+    } catch {
+      setError('Something went wrong. Please try again.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -542,11 +537,13 @@ function CTASection() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                  <button type="submit" className="cta-button">
-                    Join Waitlist
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
+                  <button type="submit" className="cta-button" disabled={loading}>
+                    {loading ? 'Sending...' : 'Join Waitlist'}
+                    {!loading && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                      </svg>
+                    )}
                   </button>
                 </form>
                 {error && <p className="cta-error">{error}</p>}
@@ -576,7 +573,7 @@ function Footer() {
           <a href="#features">Features</a>
           <a href="#signals">Signals</a>
           <a href="#expert-chat">Expert Chat</a>
-          <a href="#chart-analysis">Chart Analysis</a>
+          <a href="#portfolio-analysis">Portfolio Analysis</a>
         </div>
         <div className="footer-social">
           <span>You can find us on</span>
@@ -605,7 +602,7 @@ function App() {
       <FeaturesSection />
       <SignalsSection />
       <ExpertChatSection />
-      <ChartAnalysisSection />
+      <PortfolioAnalysisSection />
       <CTASection />
       <Footer />
     </div>
