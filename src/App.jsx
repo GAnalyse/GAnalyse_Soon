@@ -461,7 +461,7 @@ function PortfolioAnalysisSection() {
 }
 
 // CTA Section
-const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxR5QSw1pLckfhkKXWnwbGTHZbBz026ei-qyXqNZUXXnEEe3qd4KJpqkYW5UmP3T5StPQ/exec'
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycby515u_TafOwf2zJp2FsSWBdFr1L2i7e5suVBa7yel556XXVLbpYOFcAtawvRGoBCz14A/exec'
 
 function CTASection() {
   const [email, setEmail] = useState('')
@@ -487,7 +487,13 @@ function CTASection() {
 
     try {
       const url = `${GOOGLE_SHEET_URL}?email=${encodeURIComponent(email)}`
-      await fetch(url, { mode: 'no-cors' })
+      await new Promise((resolve, reject) => {
+        const img = new Image()
+        img.onload = resolve
+        img.onerror = resolve
+        img.src = url
+        setTimeout(resolve, 3000)
+      })
       setSubmitted(true)
     } catch {
       setError('Something went wrong. Please try again.')
