@@ -361,7 +361,7 @@ function ExpertChatSection() {
 
           <AnimatedSection animation="fadeUp" delay={0.4}>
             <div className="screenshot-container glass-strong chat-screenshot">
-              <img src="/Expert_Chat.png" alt="Expert Chat Preview" className="screenshot-image" />
+              <img src="/Expert_Chat_v2.png" alt="Expert Chat Preview" className="screenshot-image" />
             </div>
           </AnimatedSection>
         </div>
